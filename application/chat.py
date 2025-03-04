@@ -1,13 +1,13 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from app.llm import get_answer, find_cocktails_by_ingredients
+from application.llm import get_answer, find_cocktails_by_ingredients
 
 chat_router = APIRouter()
 
-class ChatRequest(BaseModel): # Модель для запитів
+class ChatRequest(BaseModel):
     question: str
 
-@chat_router.post("/chat") # Ендпоінт для чату
+@chat_router.post("/chat")
 async def chat(request: ChatRequest):
     try:
         if "favourite ingredients" in request.question.lower():
